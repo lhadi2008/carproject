@@ -7,7 +7,7 @@ import CarMercedes from "../images/cars-big/benz.jpg";
 import CarPassat from "../images/cars-big/passatcc.jpg";
 
 function BookCar() {
-  const [modal, setModal] = useState(false); //  class - active-modal
+  const [modal, setModal] = useState(false); // class - active-modal
 
   // booking car
   const [carType, setCarType] = useState("");
@@ -93,8 +93,7 @@ function BookCar() {
   const confirmBooking = (e) => {
     e.preventDefault();
     setModal(!modal);
-    const doneMsg = document.querySelector(".booking-done");
-    doneMsg.style.display = "flex";
+    checkout();
   };
 
   // taking value of booking inputs
@@ -148,6 +147,22 @@ function BookCar() {
   const hideMessage = () => {
     const doneMsg = document.querySelector(".booking-done");
     doneMsg.style.display = "none";
+  };
+
+  const checkout = () => {
+    const whatsappNumber = '+212672910646';
+    const message = `Hello, I would like to book the following car:\n\n` +
+                    `Car: ${carType}\n` +
+                    `Pick-Up: ${pickUp} at ${pickTime}\n` +
+                    `Drop-Off: ${dropOff} at ${dropTime}\n\n` +
+                    `Personal Information:\n` +
+                    `Name: ${name} ${lastName}\n` +
+                    `Phone: ${phone}\n` +
+                    `Email: ${email}\n` +
+                    `Address: ${address}, ${city}, ${zipcode}\n` +
+                    `Age: ${age}\n\n` +
+                    `Please contact me for further details.`;
+    window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
   };
 
   return (
@@ -252,6 +267,7 @@ function BookCar() {
                   Search
                 </button>
               </form>
+             
             </div>
           </div>
         </div>
